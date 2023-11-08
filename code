@@ -1,0 +1,66 @@
+class Book:
+    def __init__(self, title, author, year):
+        self.title = title
+        self.author = author
+        self.year = year
+
+def add_book(library, title, author, year):
+    book = Book(title, author, year)
+    library.append(book)
+    print("Book added successfully!")
+
+def display_books(library):
+    if not library:
+        print("No books in the library.")
+    else:
+        print("\nList of books in the library:")
+        for book in library:
+            print(f"Title: {book.title}")
+            print(f"Author: {book.author}")
+            print(f"Year: {book.year}")
+            print("---------------------------")
+
+def search_book(library, search_title):
+    found = False
+    for book in library:
+        if book.title.lower() == search_title.lower():
+            print("Book found!")
+            print(f"Title: {book.title}")
+            print(f"Author: {book.author}")
+            print(f"Year: {book.year}")
+            found = True
+            break
+
+    if not found:
+        print("Book not found.")
+
+def main():
+    library = []
+    
+    while True:
+        print("\nLibrary Book Management System")
+        print("1. Add a book")
+        print("2. Display books")
+        print("3. Search for a book")
+        print("4. Exit")
+
+        choice = input("Enter your choice: ")
+
+        if choice == '1':
+            title = input("Enter book title: ")
+            author = input("Enter author name: ")
+            year = int(input("Enter publication year: "))
+            add_book(library, title, author, year)
+        elif choice == '2':
+            display_books(library)
+        elif choice == '3':
+            search_title = input("Enter the title of the book to search: ")
+            search_book(library, search_title)
+        elif choice == '4':
+            print("Exiting the program. Goodbye!")
+            break
+        else:
+            print("Invalid choice. Please enter a valid option.")
+
+if __name__ == "__main__":
+    main()
